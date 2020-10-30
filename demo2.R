@@ -21,3 +21,10 @@ hdi_summary <- hdi_no_na %>%
             sd_index = sd(HDI_Value),
             se_index = sd(HDI_Value)/sqrt(n()))
 view(hdi_summary)
+
+#filter summary
+hdi_summary_low <- hdi_summary %>% 
+  filter(rank(mean_index) < 11)
+
+hdi_summary_low
+
