@@ -12,3 +12,12 @@ hdi_tidy <- hdi %>%
 #drop na values
 hdi_no_na <- hdi_tidy %>%
   filter(HDI_Value != "NA")
+
+#summarise data
+hdi_summary <- hdi_no_na %>% 
+  group_by(Country) %>% 
+  summarise(mean_index = mean(HDI_Value),
+            n = length(HDI_Value),
+            sd_index = sd(HDI_Value),
+            se_index = sd(HDI_Value)/sqrt(n()))
+view(hdi_summary)
